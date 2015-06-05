@@ -1,2 +1,0 @@
-# nacha
-NACHA file generator
