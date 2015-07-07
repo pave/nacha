@@ -100,9 +100,9 @@ class AchFile(object):
             entry.trace_num = self.settings['immediate_org'][:8] \
                 + entry.validate_numeric_field(entry_counter, 7)
 
-            entry.pmt_type_code = record.get('pmt_type_code')
-
-            print entry.pmt_type_code
+            if std_ent_cls_code == 'WEB' and \
+                    entry.transaction_code in ['27', '37']:
+                entry.pmt_type_code = record.get('pmt_type_code')
 
             entries.append((entry, record.get('addenda', [])))
             entry_counter += 1
@@ -192,8 +192,6 @@ class AchFile(object):
         return nines
 
     def get_entry_desc(self, std_ent_cls_code):
-
-        print std_ent_cls_code
 
         if std_ent_cls_code in ['PPD', 'WEB']:
             entry_desc = 'PAVELOAN'
