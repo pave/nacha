@@ -39,7 +39,7 @@ class AchFile(object):
 
     def add_batch(self, std_ent_cls_code, batch_entries=None,
                   credits=True, debits=False, eff_ent_date=None,
-                  desc_date=None):
+                  desc_date=None, entry_desc=''):
         """
 
         Use this to add batches to the file. For valid std_ent_cls_codes see:
@@ -48,7 +48,7 @@ class AchFile(object):
         if batch_entries is None:
             batch_entries = list()
 
-        entry_desc = self.get_entry_desc(std_ent_cls_code)
+        entry_desc = entry_desc or self.get_entry_desc(std_ent_cls_code)
 
         batch_count = len(self.batches) + 1
 
